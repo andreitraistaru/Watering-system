@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">My plant</string>
+    <string name="progress_bar">Updating…</string>
+    <string name="progress_bar_error">Connection to server failed</string>
+    <string name="progress_bar_watering">Watering…</string>
+    <string name="progress_bar_watering_success">Successful watering!</string>
+    <string name="progress_bar_watering_failure">Watering failed!</string>
+    <string name="plant_status_hint">Plant status</string>
+
+    <string name="airInfo">Air information:</string>
+    <string name="soilInfo">Soil information:</string>
+
+    <string name="air_humidity_hint">Air humidity</string>
+    <string name="air_temperature_hint">Air temperature</string>
+    <string name="soil_humidity_hint">Soil humidity</string>
+    <string name="status_hint">Status</string>
+
+    <string name="soil_humidity_json">soilHumidity</string>
+    <string name="air_humidity_json">airHumidity</string>
+    <string name="air_temperature_json">airTemperature</string>
+    <string name="status_json">status</string>
+
+    <string name="unavailable">Unavailable data</string>
+
+    <string name="refresh">Refresh now!</string>
+    <string name="humidity_first">Humidity:</string>
+    <string name="humidity_second">%</string>
+    <string name="temperature_first">Temperature:</string>
+    <string name="temperature_second">℃</string>
+    <string name="status">Last watering:</string>
+    <string name="status_seconds">10s ago</string>
+    <string name="status_minutes">10min ago</string>
+    <string name="status_hours">10h ago</string>
+    <string name="status_yesterday">yesterday</string>
+    <string name="status_days">10 days ago</string>
+
+    <string name="watering_can">Water now!</string>
+    <string name="water_title_dialog">Water your plant now</string>
+    <string name="water_message_dialog">Are you sure you want to continue? Choosing to continue physically waters the plant and the action CANNOT be undone!</string>
+    <string name="watering_success">The plant thanks for your glass of water!</string>
+    <string name="watering_failure">Something went wrong (operation aborted!)</string>
+
+    <string name="humidity_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
+    <string name="temperature_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
+    <string name="status_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
+    <string name="watering_can_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
+    <string name="app_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
+</resources>

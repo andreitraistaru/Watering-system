@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frameLayout_main_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar_main_activity"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/progressBar_text_main_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/progress_bar"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:visibility="visible" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageViewStatusIcon_main_activity"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/plant_status_hint"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/happy_plant" />
+
+    <Button
+        android:id="@+id/refresh_main_activity"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/background"
+        android:drawableStart="@drawable/refresh_icon"
+        android:drawablePadding="8dp"
+        android:onClick="requestData"
+        android:text="@string/refresh"
+        android:textAllCaps="false"
+        android:textColor="@color/text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewStatusIcon_main_activity" />
+
+    <TextView
+        android:id="@+id/airInfo_main_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/airInfo"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/refresh_main_activity" />
+
+    <ImageView
+        android:id="@+id/imageViewAirHumidity_main_activity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/air_humidity_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/airInfo_main_activity"
+        app:srcCompat="@drawable/humidity_icon" />
+
+    <TextView
+        android:id="@+id/airHumidity_main_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAirHumidity_main_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAirHumidity_main_activity"
+        app:layout_constraintTop_toTopOf="@+id/imageViewAirHumidity_main_activity" />
+
+    <ImageView
+        android:id="@+id/imageViewAirTemperature_main_activity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/air_temperature_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAirHumidity_main_activity"
+        app:srcCompat="@drawable/temperature_icon" />
+
+    <TextView
+        android:id="@+id/airTemperature_main_activ"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAirTemperature_main_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAirTemperature_main_activity"
+        app:layout_constraintTop_toTopOf="@+id/imageViewAirTemperature_main_activity" />
+
+    <TextView
+        android:id="@+id/soilInfo_main_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/soilInfo"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAirTemperature_main_activity" />
+
+    <ImageView
+        android:id="@+id/imageViewSoilHumidity_main_activity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/soil_humidity_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soilInfo_main_activity"
+        app:srcCompat="@drawable/humidity_icon" />
+
+    <TextView
+        android:id="@+id/soilHumidity_main_activity"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewSoilHumidity_main_activity"
+        app:layout_constraintStart_toEndOf="@+id/imageViewSoilHumidity_main_activity"
+        app:layout_constraintTop_toTopOf="@+id/imageViewSoilHumidity_main_activity" />
+
+    <ImageView
+        android:id="@+id/imageViewStatus_main_activity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/plant_status_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewSoilHumidity_main_activity"
+        app:srcCompat="@drawable/status_icon" />
+
+    <TextView
+        android:id="@+id/status_main_activ"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewStatus_main_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewStatus_main_activity"
+        app:layout_constraintTop_toTopOf="@+id/imageViewStatus_main_activity" />
+
+    <Button
+        android:id="@+id/wateringCan_main_activity"
+        android:layout_width="230dp"
+        android:layout_height="70dp"
+        android:background="@drawable/button_border"
+        android:drawableStart="@drawable/watering_can_icon"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:onClick="sendWateringRequest"
+        android:text="@string/watering_can"
+        android:textAllCaps="false"
+        android:textColor="@color/text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewStatus_main_activity" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
