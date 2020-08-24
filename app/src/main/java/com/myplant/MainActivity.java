@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -19,17 +20,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView airHumidity, airTemperature, soilHumidity, status;
+        TextView airHumidity, airTemperature, soilHumidity, status, lastRefresh;
 
         airHumidity = findViewById(R.id.airHumidity_main_activity);
         airTemperature = findViewById(R.id.airTemperature_main_activ);
         soilHumidity = findViewById(R.id.soilHumidity_main_activity);
         status = findViewById(R.id.status_main_activ);
+        lastRefresh = findViewById(R.id.refreshLastTime_main_activity);
 
         airHumidity.setText(getResources().getText(R.string.unavailable));
         airTemperature.setText(getResources().getText(R.string.unavailable));
         soilHumidity.setText(getResources().getText(R.string.unavailable));
         status.setText(getResources().getText(R.string.unavailable));
+        lastRefresh.setText(getResources().getString(R.string.last_refresh) + " " + getResources().getString(R.string.last_refresh_default));
 
         requestData(null);
     }
@@ -73,5 +76,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         dialog.show();
+    }
+
+    public void showHistory(View view) {
+        startActivity(new Intent(view.getContext(), ShowHistoryActivity.class));
     }
 }

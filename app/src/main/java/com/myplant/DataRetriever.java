@@ -1,11 +1,16 @@
 package com.myplant;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.myplant.history.DataReading;
+import com.myplant.history.HistoryClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,6 +90,7 @@ public class DataRetriever extends Thread {
                 final TextView soilHumidity = activity.findViewById(R.id.soilHumidity_main_activity);
                 final TextView airTemperature = activity.findViewById(R.id.airTemperature_main_activ);
                 final TextView status = activity.findViewById(R.id.status_main_activ);
+                final TextView lastRefresh = activity.findViewById(R.id.refreshLastTime_main_activity);
 
                 frameLayout.post(new Runnable() {
                     @Override
@@ -141,14 +147,44 @@ public class DataRetriever extends Thread {
                 status.post(new Runnable() {
                     @Override
                     public void run() {
-                        String message = activity.getResources().getText(R.string.status) + " " + statusData;
+                        String message = activity.getResources().getText(R.string.status) + "\n" + statusData;
 
                         status.setText(message);
                     }
                 });
+
+                lastRefresh.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        String message;
+                        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT);
+
+                        message = activity.getResources().getString(R.string.last_refresh) + "\n" + dateFormat.format(new Date().getTime());
+
+                        lastRefresh.setText(message);
+                    }
+                });
+
+                long now = new Date().getTime();
+                String readingTime = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT).format(now);
+
+                new AddToHistory(new DataReading(now, readingTime, airHumidityData, airTemperatureData, soilHumidityData)).start();
             }
         } catch (IOException e) {
             handleError();
+        }
+    }
+
+    class AddToHistory extends Thread {
+        private DataReading dataReading;
+
+        public AddToHistory(DataReading dataReading) {
+            this.dataReading = dataReading;
+        }
+
+        @Override
+        public void run() {
+            HistoryClient.getInstance(activity).getDatabase().getHistoryDAO().insert(dataReading);
         }
     }
 

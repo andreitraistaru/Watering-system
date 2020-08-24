@@ -7,6 +7,9 @@
     <string name="progress_bar_watering_failure">Watering failed!</string>
     <string name="plant_status_hint">Plant status</string>
 
+    <string name="last_refresh">Last refresh:</string>
+    <string name="last_refresh_default">never</string>
+
     <string name="airInfo">Air information:</string>
     <string name="soilInfo">Soil information:</string>
 
