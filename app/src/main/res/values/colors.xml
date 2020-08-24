@@ -5,4 +5,5 @@
     <color name="colorAccent">#2003A1</color>
     <color name="background">#03A9F4</color>
     <color name="text">#FF830A0A</color>
+    <color name="grid">#014D70</color>
 </resources>

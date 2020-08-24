@@ -6,11 +6,9 @@ import androidx.room.Room;
 
 public class HistoryClient {
     private static HistoryClient instance = null;
-    private Context context;
     private History database;
 
     private HistoryClient(Context context) {
-        this.context = context;
         this.database = Room.databaseBuilder(context, History.class, "PlantHistory").build();
     }
 

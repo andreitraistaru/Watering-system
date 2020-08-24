@@ -43,6 +43,10 @@
     <string name="watering_success">The plant thanks for your glass of water!</string>
     <string name="watering_failure">Something went wrong (operation aborted!)</string>
 
+    <string name="air_temperature_plot_title">Air Temperature History</string>
+    <string name="air_temperature_plot_range">Temperature</string>
+    <string name="air_temperature_plot_domain">Time</string>
+
     <string name="humidity_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
     <string name="temperature_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
     <string name="status_icon_ref">Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></string>
