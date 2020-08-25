@@ -13,7 +13,7 @@ public class Utils {
     private static final int maxHumidity = 1023;
     private static final int thirstyPlantThreshold = 46;
     private static final int driedPlantThreshold = 20;
-    private static final int maxHistoryCapacity = 10000;
+    private static final int maxHistoryCapacity = 999;
 
     public static String getServerProtocol() {
         return serverProtocol;

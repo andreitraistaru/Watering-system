@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidplot.xy.CatmullRomInterpolator;
 import com.androidplot.xy.LineAndPointFormatter;
@@ -16,11 +18,14 @@ import com.androidplot.xy.XYSeries;
 import com.myplant.history.DataReading;
 import com.myplant.history.HistoryClient;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParsePosition;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class ShowHistoryActivity extends AppCompatActivity {
@@ -30,45 +35,8 @@ public class ShowHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_history);
 
-        setTitle(getResources().getString(R.string.air_temperature_plot_title));
-
-        XYPlot plot = findViewById(R.id.plot);
-
-        plot.setTitle("");
-
-        final Number[] domainLabels = new Number[1000];
-        final Number[] series1Numbers = new Number[1000];
-
-        for(int i = 0; i < 1000; i++) {
-            domainLabels[i] = i;
-            series1Numbers[i] = 2*i;
-        }
-
-        XYSeries series1 = new SimpleXYSeries(Arrays.asList(series1Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series1");
-
-        LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.RED, Color.GREEN, Color.BLUE, null);
-
-        series1Format.setInterpolationParams(new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
-
-        plot.addSeries(series1, series1Format);
-
-        plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new Format() {
-            @Override
-            public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
-                int i = Math.round(((Number) obj).floatValue());
-                return toAppendTo.append(domainLabels[i]);
-            }
-            @Override
-            public Object parseObject(String source, ParsePosition pos) {
-                return null;
-            }
-        });
-
-        plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.LEFT).setFormat(new DecimalFormat("#"));
-
-        PanZoom.attach(plot, PanZoom.Pan.HORIZONTAL, PanZoom.Zoom.STRETCH_HORIZONTAL);
-        plot.getOuterLimits().set(0, 999, 0, 1998);
-        PanZoom.attach(plot);
+        setTitle(getResources().getString(R.string.history_activity_title));
+        ((TextView) findViewById(R.id.showHistory_show_history_activity)).setMovementMethod(new ScrollingMovementMethod());
 
         new getHistory().start();
     }
@@ -77,22 +45,19 @@ public class ShowHistoryActivity extends AppCompatActivity {
         @Override
         public void run() {
             List<DataReading> history = HistoryClient.getInstance(getApplicationContext()).getDatabase().getHistoryDAO().getAll();
-
-            final StringBuilder message = new StringBuilder();
+            final StringBuilder historyString = new StringBuilder();
 
             for (DataReading dataReading : history) {
-                message.append(dataReading.getReadingTime()).append(" ");
-                message.append(dataReading.getAirHumidity()).append(" ");
-                message.append(dataReading.getAirTemperature()).append(" ");
-                message.append(dataReading.getSoilHumidity()).append("\n");
+                historyString.append(dataReading.getReadingTime()).append(" ");
+                historyString.append(getApplicationContext().getResources().getString(R.string.history_air_humidity)).append(dataReading.getAirHumidity()).append(" ");
+                historyString.append(getApplicationContext().getResources().getString(R.string.history_air_temperature)).append(dataReading.getAirTemperature()).append(" ");
+                historyString.append(getApplicationContext().getResources().getString(R.string.history_soil_humidity)).append(dataReading.getSoilHumidity()).append("\n\n");
             }
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    TextView textView = findViewById(R.id.textView);
-
-                    textView.setText(message);
+                    ((TextView) findViewById(R.id.showHistory_show_history_activity)).setText(historyString.toString());
                 }
             });
         }

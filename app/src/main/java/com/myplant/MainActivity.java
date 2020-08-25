@@ -1,10 +1,7 @@
 package com.myplant;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -14,9 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,20 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         requestData(null);
 
-        Calendar calendar = Calendar.getInstance();
-        Intent intent = new Intent(this, UpdateService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_NO_CREATE);
-
-        if (pendingIntent == null) {
-            pendingIntent = PendingIntent.getService(this, 0, intent, 0);
-            AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.add(Calendar.SECOND, 3);
-
-            if (alarmManager != null) {
-                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, pendingIntent);
-            }
-        }
     }
 
     public void requestData(View view) {

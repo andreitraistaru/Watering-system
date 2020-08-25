@@ -3,8 +3,6 @@ package com.myplant.history;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.text.DateFormat;
-
 @Entity
 public class DataReading {
     @PrimaryKey

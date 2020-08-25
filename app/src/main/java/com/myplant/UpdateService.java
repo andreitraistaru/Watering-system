@@ -1,16 +1,15 @@
 package com.myplant;
 
 import android.app.Service;
+import android.app.job.JobParameters;
+import android.app.job.JobService;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.myplant.history.DataReading;
 import com.myplant.history.HistoryClient;
@@ -38,7 +37,14 @@ public class UpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         new Sync().start();
+
         return START_NOT_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        startService(new Intent(getApplicationContext(), UpdateService.class));
     }
 
     class Sync extends Thread {
@@ -93,7 +99,7 @@ public class UpdateService extends Service {
 
                     new AddToHistory(getApplicationContext(), new DataReading(now, readingTime, airHumidityData, airTemperatureData, soilHumidityData)).start();
                 }
-            } catch (IOException e) {
+            } catch (IOException ignored) {
             }
         }
     }

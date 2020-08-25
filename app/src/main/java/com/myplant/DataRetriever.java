@@ -24,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class DataRetriever extends Thread {
     private URL url;
@@ -184,6 +185,11 @@ public class DataRetriever extends Thread {
 
         @Override
         public void run() {
+            List<DataReading> history = HistoryClient.getInstance(activity).getDatabase().getHistoryDAO().getAll();
+            if (history.size() > Utils.getMaxHistoryCapacity()) {
+                HistoryClient.getInstance(activity).getDatabase().getHistoryDAO().delete(history.get(0));
+            }
+
             HistoryClient.getInstance(activity).getDatabase().getHistoryDAO().insert(dataReading);
         }
     }
